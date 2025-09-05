@@ -1,0 +1,36 @@
+version: '3.8'
+
+# Defines a custom network for our services
+networks:
+  monitor-net:
+    driver: bridge
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./:/etc/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - monitor-net
+
+  #node-exporter:
+  #  image: quay.io/prometheus/node-exporter:latest
+  #  container_name: node-exporter
+  #  ports:
+  #    - "9100:9100"
+  #  networks:
+  #    - monitor-net
+
+  alert-manager:
+    image: quay.io/prometheus/alertmanager
+    container_name: alert-manager
+    ports:
+      - "9093:9093"
+    volumes:
+      # Mounts the local alertmanager config file into the container
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    networks:
+      - monitor-net

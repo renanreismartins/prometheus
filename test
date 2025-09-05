@@ -1,0 +1,3 @@
+CONTAINER ID   IMAGE                                     COMMAND                  CREATED              STATUS              PORTS     NAMES
+0f94a2c27233   quay.io/prometheus/node-exporter:latest   "/bin/node_exporter"     About a minute ago   Up About a minute             blissful_mahavira
+bed3936235bc   prom/prometheus                           "/bin/prometheus --c…"   2 minutes ago        Up 2 minutes                  agitated_bassi
